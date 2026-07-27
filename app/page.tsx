@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const navLinks = [
   { href: "#concept", label: "Le concept" },
   { href: "#horaires", label: "Horaires" },
@@ -12,10 +14,15 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1">
       <header className="sticky top-0 z-10 border-b border-neutral-800 bg-neutral-950/90 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <span className="font-display text-xl font-semibold tracking-wide text-accent">
-            J.O
-          </span>
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+          <Image
+            src="/images/logo-jo-live-bar.jpg"
+            alt="J.O Live Stage Bar"
+            width={1140}
+            height={641}
+            className="h-9 w-auto rounded-sm"
+            priority
+          />
           <nav className="hidden gap-6 text-sm text-neutral-300 sm:flex">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} className="hover:text-accent">
@@ -27,10 +34,16 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        <section className="mx-auto flex max-w-5xl flex-col items-start gap-6 px-6 py-28">
-          <h1 className="font-display text-5xl font-semibold leading-tight text-neutral-50 sm:text-6xl">
-            J.O <span className="text-accent">|</span> Live Stage Bar
-          </h1>
+        <section className="mx-auto flex max-w-5xl flex-col items-start gap-6 px-6 py-24">
+          <Image
+            src="/images/logo-jo-live-bar.jpg"
+            alt="LE J.O Live Stage Bar — Since 1993"
+            width={1140}
+            height={641}
+            className="w-full max-w-sm rounded-lg border border-accent/20 shadow-lg shadow-black/50"
+            priority
+          />
+          <h1 className="sr-only">J.O | Live Stage Bar</h1>
           <p className="max-w-xl text-lg text-neutral-400">
             Café-concert et bar à cocktails aux Arcs 1800 depuis 1993 :
             concerts live, tapas et ambiance clubbing jusqu&apos;au bout de la

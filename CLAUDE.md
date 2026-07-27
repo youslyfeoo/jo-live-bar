@@ -135,3 +135,8 @@ l'organisateur avant mise en production :
   ajouter si une page menu est demandée plus tard
 - **Email** : non trouvé (pas de lien mailto exploitable sur leur
   Linktree) — reste en `[À COMPLÉTER]`
+- **Logo officiel** : récupéré depuis leur page inserve.co (photo de
+  profil de l'établissement) — `public/images/logo-jo-live-bar.jpg`.
+  Cachet Art Déco noir et or "LE J•O LIVE STAGE BAR SINCE 1993", qui
+  confirme la palette noir/or déjà choisie pour le site. Utilisé dans le
+  header et le hero de `app/page.tsx`
