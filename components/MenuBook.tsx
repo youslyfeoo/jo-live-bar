@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import HTMLFlipBook from "react-pageflip";
 import { menuPages, type MenuPageData } from "./menu-data";
@@ -10,6 +10,25 @@ import { menuPages, type MenuPageData } from "./menu-data";
 const FlipBook = HTMLFlipBook as unknown as React.ForwardRefExoticComponent<
   React.PropsWithChildren<Record<string, unknown>> & React.RefAttributes<unknown>
 >;
+
+interface PageFlipInstance {
+  flip: (pageIndex: number) => void;
+}
+interface FlipBookHandle {
+  pageFlip: () => PageFlipInstance;
+}
+
+// Page 0 is the cover, page indexes below are offset by 1 to match menuPages.
+const TOC_ENTRIES = [
+  { label: "Finger Food", page: 1 },
+  { label: "Les Vins", page: 3 },
+  { label: "Champagne", page: 5 },
+  { label: "Bière", page: 6 },
+  { label: "Cocktails", page: 7 },
+  { label: "Mocktails", page: 11 },
+  { label: "Shots & Softs", page: 12 },
+  { label: "Alcools", page: 13 },
+];
 
 function CornerFrame({ children }: { children: React.ReactNode }) {
   const corner = "absolute h-6 w-6 border-accent/70";
@@ -74,19 +93,33 @@ function ContentPage({ data }: { data: MenuPageData }) {
   );
 }
 
-function CoverPage() {
+function CoverPage({ onNavigate }: { onNavigate: (page: number) => void }) {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-2">
+    <div className="flex h-full flex-col items-center gap-4 overflow-y-auto">
       <Image
         src="/images/couverture-jo-live-bar.png"
         alt="LE J.O Live Stage Bar — Since 1993"
         width={604}
         height={805}
-        className="w-full max-w-[220px] rounded shadow-lg shadow-black/40"
+        className="w-full max-w-[160px] rounded shadow-lg shadow-black/40"
+        priority
       />
-      <p className="mt-4 text-center font-display text-xs uppercase tracking-[0.2em] text-accent-red/80">
+      <p className="text-center font-display text-xs uppercase tracking-[0.2em] text-accent-red/80">
         La carte
       </p>
+      <div className="flex w-full flex-col gap-1.5">
+        {TOC_ENTRIES.map((entry) => (
+          <button
+            key={entry.label}
+            type="button"
+            onClick={() => onNavigate(entry.page)}
+            className="flex items-center justify-between rounded border border-accent-red/30 px-3 py-1.5 text-left text-xs font-medium text-[#2a1f1a] transition-colors hover:bg-accent-red/10"
+          >
+            {entry.label}
+            <span className="text-accent-red">→</span>
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
@@ -112,8 +145,20 @@ function ClosingPage() {
 }
 
 export default function MenuBook() {
+  const flipBookRef = useRef<FlipBookHandle | null>(null);
+
+  const goToPage = (page: number) => {
+    // react-pageflip silently no-ops the very first programmatic flip()
+    // call right after mount; a harmless immediate second call works
+    // around it without affecting later, already-working calls.
+    const instance = flipBookRef.current?.pageFlip();
+    instance?.flip(page);
+    instance?.flip(page);
+  };
+
   return (
     <FlipBook
+      ref={flipBookRef}
       width={340}
       height={500}
       size="stretch"
@@ -139,7 +184,7 @@ export default function MenuBook() {
       style={{}}
     >
       <Page>
-        <CoverPage />
+        <CoverPage onNavigate={goToPage} />
       </Page>
       {menuPages.map((data, i) => (
         <Page key={i}>

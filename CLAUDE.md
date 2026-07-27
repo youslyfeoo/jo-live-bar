@@ -39,8 +39,20 @@ Techniquement : `react-pageflip` est chargé uniquement côté client
 la librairie manipule le DOM directement — nécessaire pour rester
 compatible avec l'export statique (`output: "export"`).
 
+La couverture affiche un sommaire de raccourcis (`TOC_ENTRIES` dans
+`components/MenuBook.tsx`) : cliquer sur une catégorie (Finger Food, Les
+Vins, Champagne, Bière, Cocktails, Mocktails, Shots & Softs, Alcools)
+saute directement à la bonne page via l'API `pageFlip().flip(page)`
+(accessible par une ref sur `HTMLFlipBook`). **Point technique à
+retenir** : le tout premier appel à `.flip()` après le montage du
+composant ne s'affiche pas (bug connu de la librairie) — `goToPage`
+appelle `.flip(page)` deux fois de suite pour contourner ça ; ne pas
+retirer ce deuxième appel, il n'est pas redondant.
+
 Si les prix ou plats changent, mettre à jour `components/menu-data.ts`
-uniquement (structure `MenuPageData[]`, un objet par page du livre).
+uniquement (structure `MenuPageData[]`, un objet par page du livre). Si
+une page est ajoutée/retirée, penser à recalculer les index dans
+`TOC_ENTRIES` (page 0 = couverture, page N = `menuPages[N-1]`).
 
 Le nom réel du lieu (Instagram @j.o.livebar), l'adresse, le téléphone et
 le concept ont été retrouvés le 2026-07-27 via leur Instagram, leur
