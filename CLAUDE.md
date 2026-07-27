@@ -12,10 +12,33 @@ deux projets, dans le code comme dans les données.
 
 ## État actuel (2026-07-27)
 
-Vitrine de présentation uniquement (une page d'accueil) : présentation du
-lieu, concept, horaires, adresse/contact. Pas encore de réservation en
-ligne interne ni de paiement — quelques champs restent volontairement en
-`[À COMPLÉTER]` (voir liste en fin de fichier).
+Vitrine de présentation (page d'accueil) : présentation du lieu, concept,
+horaires, adresse/contact. Plus une page `/menu` : la carte complète
+(finger food, vins, bières, cocktails, spiritueux) sous forme de livre
+animé qui se feuillette (`react-pageflip`), voir "Page carte" ci-dessous.
+Pas encore de réservation en ligne interne ni de paiement — quelques
+champs restent volontairement en `[À COMPLÉTER]` (voir liste en fin de
+fichier).
+
+## Page carte (`/menu`)
+
+Livre animé (composant `components/MenuBook.tsx`, données dans
+`components/menu-data.ts`) reproduisant fidèlement la carte réelle du
+lieu (textes et prix transcrits depuis les photos de leur carte papier,
+fournies par l'organisateur le 2026-07-27) : Finger Food, vins, bières,
+cocktails/mocktails, shots/softs, alcool classique et premium (18 pages
+de contenu + couverture + page de clôture). Pages en fond crème avec
+cadres Art Déco dorés et titres bordeaux, pour évoquer la vraie carte
+papier plutôt que le thème sombre du reste du site — choix volontaire
+pour cette page précise.
+
+Techniquement : `react-pageflip` est chargé uniquement côté client
+(`components/MenuBookLoader.tsx`, `next/dynamic` avec `ssr: false`) car
+la librairie manipule le DOM directement — nécessaire pour rester
+compatible avec l'export statique (`output: "export"`).
+
+Si les prix ou plats changent, mettre à jour `components/menu-data.ts`
+uniquement (structure `MenuPageData[]`, un objet par page du livre).
 
 Le nom réel du lieu (Instagram @j.o.livebar), l'adresse, le téléphone et
 le concept ont été retrouvés le 2026-07-27 via leur Instagram, leur
