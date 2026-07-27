@@ -174,7 +174,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-neutral-900 px-6 py-8 text-center text-sm text-neutral-500">
+      <footer className="border-t border-neutral-900 px-6 pt-8 pb-24 text-center text-sm text-neutral-500">
         © {new Date().getFullYear()} J.O Live Stage Bar
       </footer>
     </div>

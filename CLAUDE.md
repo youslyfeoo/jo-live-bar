@@ -13,11 +13,13 @@ deux projets, dans le code comme dans les données.
 ## État actuel (2026-07-27)
 
 Vitrine de présentation (page d'accueil) : présentation du lieu, concept,
-horaires, adresse/contact. Plus une page `/menu` : la carte complète
-(finger food, vins, bières, cocktails, spiritueux) sous forme de livre
-animé qui se feuillette (`react-pageflip`), voir "Page carte" ci-dessous.
-Pas encore de réservation en ligne interne ni de paiement — quelques
-champs restent volontairement en `[À COMPLÉTER]` (voir liste en fin de
+horaires, adresse/contact. Plus trois pages : `/menu` (carte complète en
+livre animé, voir "Page carte" ci-dessous), `/plan-de-salle` (voir
+"Choix de la table sur plan") et `/a-propos` (histoire et esprit du
+lieu). Navigation par bulle flottante en bas de chaque page
+(`components/BottomNav.tsx`, façon appli mobile) vers ces sections. Pas
+encore de réservation en ligne interne ni de paiement — quelques champs
+restent volontairement en `[À COMPLÉTER]` (voir liste en fin de
 fichier).
 
 ## Page carte (`/menu`)

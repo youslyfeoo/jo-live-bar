@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function PlanDeSallePage() {
   return (
-    <div className="flex min-h-screen flex-col items-center gap-8 bg-neutral-950 px-4 py-10">
+    <div className="flex min-h-screen flex-col items-center gap-8 bg-neutral-950 px-4 pt-10 pb-28">
       <div className="flex w-full max-w-3xl items-center justify-between">
         <a href="/" className="text-sm text-neutral-400 hover:text-accent">
           ← Retour au site
