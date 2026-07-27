@@ -111,6 +111,33 @@ Décision organisateur (2026-07-27), à construire dans une prochaine étape :
   conservation, droit à la suppression sur demande) — à faire valider par
   un professionnel qualifié si besoin, comme pour LYFE
 
+### Choix de la table sur plan (décision organisateur, 2026-07-27)
+
+En plus du formulaire ci-dessus, le client doit pouvoir **choisir sa
+table sur un plan visuel du J.O**, avec la disponibilité en temps réel
+(une table déjà réservée à la date/heure choisie apparaît indisponible)
+— pas une simple carte statique, donc chaque table doit être une entrée
+dans la base de données (capacité, zone) reliée aux réservations.
+
+**Bloqué en attente du vrai plan de salle** : l'organisateur doit encore
+fournir le plan de table réel du J.O (nombre de tables, capacité de
+chacune, disposition dans la salle — photo, schéma ou description à
+l'oral, voir README.md si besoin de rappeler les options). Interdiction
+absolue d'inventer une disposition plausible en attendant (voir "Règles
+absolues" ci-dessous) : cette partie de la fonctionnalité reste en
+pause tant que ces informations ne sont pas fournies.
+
+Ce que ça implique techniquement, à faire au moment de démarrer ce
+chantier (pas avant, pas de scaffolding spéculatif) :
+- Table `tables` dans Supabase (id, nom/numéro, capacité, zone, position
+  x/y pour l'affichage du plan)
+- La réservation référence une table précise (`table_id`), en plus de
+  event_slug/email/participants déjà prévus
+- Ceci confirme le besoin de Supabase + Server Actions dès cette étape
+  (pas seulement pour l'empreinte bancaire) : **retirer `output:
+  "export"` fera partie de ce même chantier**, voir note dans "Stack
+  technique"
+
 ## Règles absolues
 
 1. Jamais inventer une donnée manquante (adresse, horaires, concept,
