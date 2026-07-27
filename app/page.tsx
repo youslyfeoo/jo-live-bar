@@ -3,6 +3,7 @@ import Image from "next/image";
 const navLinks = [
   { href: "#concept", label: "Le concept" },
   { href: "/menu", label: "La carte" },
+  { href: "/plan-de-salle", label: "Plan de salle" },
   { href: "#horaires", label: "Horaires" },
   { href: "#adresse", label: "Adresse" },
   { href: "#reservation", label: "Réserver" },
@@ -161,6 +162,12 @@ export default function Home() {
                 className="rounded-full border border-neutral-700 px-6 py-3 text-sm font-medium text-neutral-200 transition-colors hover:border-accent hover:text-accent"
               >
                 Voir la carte
+              </a>
+              <a
+                href="/plan-de-salle"
+                className="rounded-full border border-neutral-700 px-6 py-3 text-sm font-medium text-neutral-200 transition-colors hover:border-accent hover:text-accent"
+              >
+                Voir le plan de salle
               </a>
             </div>
           </div>

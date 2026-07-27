@@ -119,13 +119,19 @@ table sur un plan visuel du J.O**, avec la disponibilité en temps réel
 — pas une simple carte statique, donc chaque table doit être une entrée
 dans la base de données (capacité, zone) reliée aux réservations.
 
-**Bloqué en attente du vrai plan de salle** : l'organisateur doit encore
-fournir le plan de table réel du J.O (nombre de tables, capacité de
-chacune, disposition dans la salle — photo, schéma ou description à
-l'oral, voir README.md si besoin de rappeler les options). Interdiction
-absolue d'inventer une disposition plausible en attendant (voir "Règles
-absolues" ci-dessous) : cette partie de la fonctionnalité reste en
-pause tant que ces informations ne sont pas fournies.
+**Plan de salle validé le 2026-07-27** (page `/plan-de-salle`,
+composant `components/FloorPlan.tsx`) : salle rectangulaire, bar sur
+toute la longueur d'un côté, scène centrée sur le côté opposé (plus
+étroite que le mur), 24 tables au total — 10 tables rondes (2 pers.),
+10 tables carrées (4 pers.), 4 banquettes le long des murs latéraux (6
+pers.) — soit ~84 places assises. **Ce plan est une estimation décrite à
+l'oral par l'organisateur, pas un relevé architectural exact** — les
+positions précises (coordonnées SVG dans `floorTables`,
+`components/FloorPlan.tsx`) sont à ajuster si un vrai plan/photo est
+fourni plus tard. Le plan affiché est pour l'instant statique
+(présentation seule) : le choix d'une table précise au moment de
+réserver, avec disponibilité en temps réel, arrivera avec le système de
+réservation ci-dessous.
 
 Ce que ça implique techniquement, à faire au moment de démarrer ce
 chantier (pas avant, pas de scaffolding spéculatif) :
