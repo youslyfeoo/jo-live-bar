@@ -9,6 +9,16 @@ const items = [
   { href: "/a-propos", label: "À propos" },
 ];
 
+function CymbalIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5" aria-hidden="true">
+      <ellipse cx="12" cy="13" rx="10" ry="4" className="fill-accent" />
+      <ellipse cx="12" cy="11.5" rx="10" ry="4" className="fill-accent" />
+      <ellipse cx="12" cy="10.7" rx="3.2" ry="1.4" className="fill-accent-red/40" />
+    </svg>
+  );
+}
+
 export default function BottomNav() {
   const pathname = usePathname();
 
@@ -23,13 +33,14 @@ export default function BottomNav() {
           <a
             key={item.href}
             href={item.href}
-            className={`rounded-full px-3.5 py-2 text-xs font-medium transition-colors sm:px-4 sm:text-sm ${
+            className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-xs font-medium transition-colors sm:px-4 sm:text-sm ${
               isActive
                 ? "bg-accent text-neutral-950"
                 : "text-neutral-300 hover:text-accent"
             }`}
           >
             {item.label}
+            <CymbalIcon />
           </a>
         );
       })}
