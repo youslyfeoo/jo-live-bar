@@ -3,8 +3,7 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "À propos — J.O Live Stage Bar",
-  description:
-    "L'histoire et l'esprit du J.O Live Stage Bar, aux Arcs 1800 depuis 1993.",
+  description: "L'histoire du J.O Live Stage Bar, aux Arcs 1800 depuis 1993.",
 };
 
 export default function AProposPage() {
@@ -47,49 +46,13 @@ export default function AProposPage() {
           </p>
         </section>
 
-        <section className="flex flex-col gap-3">
-          <h2 className="font-display text-xl font-semibold text-neutral-50">
-            L&apos;esprit du lieu
-          </h2>
-          <p className="text-neutral-400">
-            Velours, bois et lumières tamisées composent une ambiance
-            chaleureuse et conviviale. Ici, on commence par un concert live et
-            des tapas partagés à l&apos;apéritif, on continue avec des
-            cocktails créatifs et une cave à vins et spiritueux choisis avec
-            soin, et on termine en clubbing jusqu&apos;au bout de la nuit.
+        <section className="flex flex-col items-start gap-3 rounded-lg border border-neutral-800 px-5 py-5">
+          <p className="text-sm text-neutral-400">
+            Concept, horaires, adresse et réservation : tout est sur la page
+            d&apos;accueil.
           </p>
-        </section>
-
-        <section className="flex flex-col gap-3">
-          <h2 className="font-display text-xl font-semibold text-neutral-50">
-            Summer Club 2026
-          </h2>
-          <p className="text-neutral-400">
-            L&apos;été, le J.O ouvre ses portes tous les jeudis, vendredis et
-            samedis de juillet et août, pour des nuits de clubbing jusqu&apos;à
-            5h du matin.
-          </p>
-        </section>
-
-        <section className="flex flex-col gap-2 text-neutral-400">
-          <h2 className="font-display text-xl font-semibold text-neutral-50">
-            Nous suivre
-          </h2>
-          <a
-            href="https://www.instagram.com/j.o.livebar/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-accent"
-          >
-            Instagram @j.o.livebar
-          </a>
-          <a
-            href="https://www.tiktok.com/@j.o.livebar"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-accent"
-          >
-            TikTok @j.o.livebar
+          <a href="/#concept" className="text-sm text-accent hover:underline">
+            Voir le concept et les infos pratiques →
           </a>
         </section>
       </div>

@@ -15,12 +15,30 @@ deux projets, dans le code comme dans les données.
 Vitrine de présentation (page d'accueil) : présentation du lieu, concept,
 horaires, adresse/contact. Plus trois pages : `/menu` (carte complète en
 livre animé, voir "Page carte" ci-dessous), `/plan-de-salle` (voir
-"Choix de la table sur plan") et `/a-propos` (histoire et esprit du
-lieu). Navigation par bulle flottante en bas de chaque page
+"Choix de la table sur plan") et `/a-propos` (histoire du lieu).
+Navigation par bulle flottante en bas de chaque page
 (`components/BottomNav.tsx`, façon appli mobile) vers ces sections. Pas
 encore de réservation en ligne interne ni de paiement — quelques champs
 restent volontairement en `[À COMPLÉTER]` (voir liste en fin de
 fichier).
+
+### Répartition du contenu par page (décision organisateur, 2026-07-28)
+
+Chaque information vit à un seul endroit, jamais dupliquée entre pages :
+- **`/` (accueil)** : seule source pour le concept (teaser court), les
+  horaires, l'adresse/contact (téléphone, Instagram, TikTok) et la
+  réservation. Le header ne contient plus qu'un logo (plus de liens en
+  double avec la bulle du bas) — la navigation se fait uniquement via la
+  bulle flottante (`BottomNav`)
+- **`/a-propos`** : uniquement l'histoire ("Depuis 1993") — ne répète
+  jamais le concept, les horaires ou les réseaux sociaux, qui vivent sur
+  l'accueil. Un lien "Voir le concept et les infos pratiques →" renvoie
+  vers `/#concept` plutôt que de dupliquer ce contenu
+- **`/menu`** : uniquement la carte
+- **`/plan-de-salle`** : uniquement le plan de table
+
+Avant d'ajouter du contenu à une page existante, vérifier qu'il n'existe
+pas déjà ailleurs — sinon lier plutôt que dupliquer.
 
 ## Page carte (`/menu`)
 

@@ -1,14 +1,5 @@
 import Image from "next/image";
 
-const navLinks = [
-  { href: "#concept", label: "Le concept" },
-  { href: "/menu", label: "La carte" },
-  { href: "/plan-de-salle", label: "Plan de salle" },
-  { href: "#horaires", label: "Horaires" },
-  { href: "#adresse", label: "Adresse" },
-  { href: "#reservation", label: "Réserver" },
-];
-
 const RESERVATION_ACTUELLE_URL =
   "https://inserve.co/businesses/LgLbI7dRTU5Jvxfiozrt";
 
@@ -16,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1">
       <header className="sticky top-0 z-10 border-b border-neutral-800 bg-neutral-950/90 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+        <div className="mx-auto flex max-w-5xl items-center px-6 py-3">
           <Image
             src="/images/logo-jo-live-bar.jpg"
             alt="J.O Live Stage Bar"
@@ -25,13 +16,6 @@ export default function Home() {
             className="h-9 w-auto rounded-sm"
             priority
           />
-          <nav className="hidden gap-6 text-sm text-neutral-300 sm:flex">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="hover:text-accent">
-                {link.label}
-              </a>
-            ))}
-          </nav>
         </div>
       </header>
 
@@ -72,6 +56,9 @@ export default function Home() {
               lumières tamisées composent une atmosphère chaleureuse et
               conviviale.
             </p>
+            <a href="/a-propos" className="mt-3 inline-block text-sm text-accent hover:underline">
+              Notre histoire depuis 1993 →
+            </a>
           </div>
         </section>
 
