@@ -78,11 +78,11 @@ function CoverPage() {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-2">
       <Image
-        src="/images/logo-jo-live-bar.jpg"
+        src="/images/couverture-jo-live-bar.png"
         alt="LE J.O Live Stage Bar — Since 1993"
-        width={1140}
-        height={641}
-        className="w-full max-w-[240px] rounded border border-accent/40"
+        width={604}
+        height={805}
+        className="w-full max-w-[220px] rounded shadow-lg shadow-black/40"
       />
       <p className="mt-4 text-center font-display text-xs uppercase tracking-[0.2em] text-accent-red/80">
         La carte
