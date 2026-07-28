@@ -16,10 +16,12 @@ Vitrine de présentation (page d'accueil) : présentation du lieu, concept,
 horaires, adresse/contact. Plus trois pages : `/menu` (carte complète en
 livre animé, voir "Page carte" ci-dessous), `/plan-de-salle` (voir
 "Choix de la table sur plan") et `/a-propos` (histoire du lieu).
-Navigation par bulle flottante en bas de chaque page
-(`components/BottomNav.tsx`, façon appli mobile) vers ces sections. Pas
-encore de réservation en ligne interne ni de paiement — quelques champs
-restent volontairement en `[À COMPLÉTER]` (voir liste en fin de
+Navigation en bas de chaque page (`components/BottomNav.tsx`, façon
+appli mobile) vers ces sections : 4 pastilles dorées côte à côte (sans
+fond de bulle englobant), le nom de la section écrit directement sur
+chaque pastille. Pas encore de réservation en ligne interne ni de
+paiement — quelques champs restent volontairement en `[À COMPLÉTER]`
+(voir liste en fin de
 fichier).
 
 ### Répartition du contenu par page (décision organisateur, 2026-07-28)
