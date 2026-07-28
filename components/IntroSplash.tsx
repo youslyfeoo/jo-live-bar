@@ -45,6 +45,7 @@ export default function IntroSplash() {
         autoPlay
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-neutral-950/55" />

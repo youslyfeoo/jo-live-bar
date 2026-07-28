@@ -7,6 +7,7 @@ const RESERVATION_ACTUELLE_URL =
 export default function Home() {
   return (
     <div className="flex flex-col flex-1">
+      <link rel="preload" as="video" href="/videos/intro-drummer.mp4" type="video/mp4" />
       <IntroSplash />
       <header className="sticky top-0 z-10 border-b border-neutral-800 bg-neutral-950/90 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center px-6 py-3">
