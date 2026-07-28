@@ -181,19 +181,30 @@ table sur un plan visuel du J.O**, avec la disponibilité en temps réel
 — pas une simple carte statique, donc chaque table doit être une entrée
 dans la base de données (capacité, zone) reliée aux réservations.
 
-**Plan de salle validé le 2026-07-27** (page `/plan-de-salle`,
-composant `components/FloorPlan.tsx`) : salle rectangulaire, bar sur
-toute la longueur d'un côté, scène centrée sur le côté opposé (plus
-étroite que le mur), 24 tables au total — 10 tables rondes (2 pers.),
-10 tables carrées (4 pers.), 4 banquettes le long des murs latéraux (6
-pers.) — soit ~84 places assises. **Ce plan est une estimation décrite à
-l'oral par l'organisateur, pas un relevé architectural exact** — les
-positions précises (coordonnées SVG dans `floorTables`,
-`components/FloorPlan.tsx`) sont à ajuster si un vrai plan/photo est
-fourni plus tard. Le plan affiché est pour l'instant statique
-(présentation seule) : le choix d'une table précise au moment de
-réserver, avec disponibilité en temps réel, arrivera avec le système de
-réservation ci-dessous.
+**Plan de salle validé le 2026-07-27, réduit le 2026-07-28** (page
+`/plan-de-salle`, composant `components/FloorPlan.tsx`, données dans
+`components/floor-data.ts`) : salle rectangulaire, bar sur toute la
+longueur d'un côté, scène centrée sur le côté opposé (plus étroite que
+le mur), **12 tables au total** (réduit de moitié à la demande de
+l'organisateur, qui trouvait le plan à 24 tables trop chargé) — 5
+tables rondes (2 pers.), 5 tables carrées (4 pers.), 2 banquettes le
+long des murs latéraux (6 pers.) — soit ~42 places assises. **Ce plan
+est une estimation décrite à l'oral par l'organisateur, pas un relevé
+architectural exact** — les positions précises (coordonnées SVG dans
+`floorTables`, `components/floor-data.ts`) sont à ajuster si un vrai
+plan/photo est fourni plus tard.
+
+Les tables sont cliquables (`components/FloorPlan.tsx`, "use client") :
+toucher une table la sélectionne (mise en évidence + boutons "Réserver
+cette table" / "Appeler"), la retoucher la désélectionne. **La
+disponibilité en temps réel n'est pas encore branchée** — la
+sélection ne fait qu'orienter vers le canal de réservation actuel
+(inserve.co/téléphone) en demandant de préciser le numéro de table ;
+le vrai lien base de données par table arrivera avec le système de
+réservation ci-dessous. Point technique : `floorTables`/`floorSummary`
+vivent dans `floor-data.ts` (fichier sans "use client") plutôt que
+dans `FloorPlan.tsx`, pour que la page serveur `/plan-de-salle` puisse
+importer `floorSummary` sans passer par la frontière client/serveur.
 
 Ce que ça implique techniquement, à faire au moment de démarrer ce
 chantier (pas avant, pas de scaffolding spéculatif) :

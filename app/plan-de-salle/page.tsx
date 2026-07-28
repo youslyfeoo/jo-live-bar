@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import FloorPlan, { floorSummary } from "@/components/FloorPlan";
+import FloorPlan from "@/components/FloorPlan";
+import { floorSummary } from "@/components/floor-data";
 
 export const metadata: Metadata = {
   title: "Plan de salle — J.O Live Stage Bar",
@@ -36,8 +37,8 @@ export default function PlanDeSallePage() {
       </div>
 
       <p className="max-w-md text-center text-xs text-neutral-500">
-        {floorSummary.total} tables · ~{floorSummary.seats} places assises. Choisir sa table au
-        moment de réserver arrivera avec le futur système de réservation en ligne.
+        {floorSummary.total} tables · ~{floorSummary.seats} places assises. La disponibilité en
+        temps réel arrivera avec le futur système de réservation en ligne.
       </p>
     </div>
   );
