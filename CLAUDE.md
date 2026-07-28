@@ -27,11 +27,19 @@ même style ; `cymbal-texture.png` reste dans le projet mais n'est plus
 utilisé.
 
 Écran d'accueil animé (`components/IntroSplash.tsx`, page `/`
-uniquement) : silhouette dorée d'un batteur qui joue (baguettes
-animées en CSS, cymbales, grosse caisse « J·O »), plein écran noir,
-disparaît automatiquement après ~3,2s (une seule fois par session via
-`sessionStorage`, et jamais si l'utilisateur a activé « réduire les
-animations » sur son appareil).
+uniquement) : la vraie photo de couverture (`couverture-jo-live-bar.png`)
+apparaît en fondu/zoom avec un reflet doré qui la traverse, plein écran
+noir, disparaît automatiquement après ~2,6s (une seule fois par session
+via `sessionStorage`, jamais si l'utilisateur a activé « réduire les
+animations »). **Un premier essai avait dessiné un batteur animé en
+SVG/CSS — jugé pas assez réaliste par l'organisateur (2026-07-28),
+remplacé par cette version basée sur la vraie photo.** Si l'organisateur
+fournit une vidéo/GIF réel d'un batteur plus tard, cette page pourra
+être remplacée à nouveau.
+
+Page carte (`/menu`) : la page elle-même ne défile plus (hauteur fixe à
+l'écran, `overflow-hidden`) pour que seul le livre se feuillette, sans
+que la page bouge en même temps.
 
 Pas encore de réservation en ligne interne ni de paiement — quelques
 champs restent volontairement en `[À COMPLÉTER]` (voir liste en fin de
