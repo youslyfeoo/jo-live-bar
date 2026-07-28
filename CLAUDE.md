@@ -156,62 +156,101 @@ déploiement final, pas bloquant pour le développement en local.
 
 ## Feuille de route — réservation avec empreinte bancaire (pas encore implémentée)
 
-Décision organisateur (2026-07-27), à construire dans une prochaine étape :
+### Contexte métier (décision organisateur, 2026-07-28)
 
-- Formulaire de réservation : nom, contact, nombre de personnes, date/heure
-- Carte bancaire enregistrée à la réservation (Stripe SetupIntent) —
-  **aucun débit immédiat**, juste un moyen de paiement mis de côté
-- Montant de garantie : 10€ par personne (ex. 5 personnes réservées = 50€
-  de garantie)
-- Débit déclenché **uniquement si la personne ne se présente pas** malgré
-  sa réservation (no-show) — nécessite une action côté équipe (interface
-  admin à construire, sur le modèle de `/admin` chez LYFE) pour marquer
-  une réservation comme no-show et déclencher le prélèvement
-- Coordonnées des réservataires conservées comme fichier client, dans une
-  base de données dédiée à Jo Live Bar (jamais partagée avec LYFE)
-- Mention RGPD à prévoir sur le site (usage des données, durée de
-  conservation, droit à la suppression sur demande) — à faire valider par
-  un professionnel qualifié si besoin, comme pour LYFE
+Jo Live Bar utilise **Lightspeed** comme logiciel de caisse (POS) —
+noté pour référence, aucune intégration avec Lightspeed n'est prévue
+pour l'instant (chantier séparé, à évoquer si l'organisateur le
+demande explicitement plus tard).
 
-### Choix de la table sur plan (décision organisateur, 2026-07-27)
+**Le problème réel à résoudre** : l'an dernier, de nombreux clients ont
+réservé sans se présenter (no-show), laissant l'organisateur avec des
+tables réservées invendables à d'autres clients — un vrai manque à
+gagner. L'empreinte bancaire existe spécifiquement pour dissuader/
+compenser ce problème, pas comme fonctionnalité gadget.
 
-En plus du formulaire ci-dessus, le client doit pouvoir **choisir sa
-table sur un plan visuel du J.O**, avec la disponibilité en temps réel
-(une table déjà réservée à la date/heure choisie apparaît indisponible)
-— pas une simple carte statique, donc chaque table doit être une entrée
-dans la base de données (capacité, zone) reliée aux réservations.
+**Modèle de placement des tables** (important, corrige une hypothèse
+précédente) : le choix d'une table sur le plan par le client est une
+**préférence indicative**, pas une réservation ferme d'un emplacement
+précis. C'est l'organisateur qui place réellement les clients le soir
+même, comme il l'entend. Conséquence technique : **pas besoin de
+verrouillage temps réel par table** (une table "prise" par quelqu'un
+n'a pas besoin de disparaître pour les autres) — en revanche, il faut
+gérer une **capacité globale par créneau** (nombre total de couverts
+acceptés, borné par les ~42 places du plan et la capacité réelle de la
+salle/cuisine).
 
-**Plan de salle validé le 2026-07-27, réduit le 2026-07-28** (page
-`/plan-de-salle`, composant `components/FloorPlan.tsx`, données dans
-`components/floor-data.ts`) : salle rectangulaire, bar sur toute la
-longueur d'un côté, scène centrée sur le côté opposé (plus étroite que
-le mur), **12 tables au total** (réduit de moitié à la demande de
-l'organisateur, qui trouvait le plan à 24 tables trop chargé) — 5
-tables rondes (2 pers.), 5 tables carrées (4 pers.), 2 banquettes le
+### Politique de réservation (décisions organisateur, 2026-07-28)
+
+- **Annulation gratuite jusqu'à 24h avant** la réservation ; passé ce
+  délai (ou no-show pur et simple), l'empreinte est débitée
+- **Aucune limite de taille de groupe** pour réserver en ligne (pas de
+  redirection vers un appel téléphonique au-delà d'un certain nombre de
+  personnes)
+
+### Flux complet à construire
+
+1. Formulaire de réservation : nom, contact, nombre de personnes,
+   date/heure, table préférée sur le plan (optionnel — "aucune
+   préférence" possible)
+2. Carte bancaire enregistrée à la réservation (Stripe SetupIntent) —
+   **aucun débit immédiat**, juste un moyen de paiement mis de côté
+3. Montant de garantie : 10€ par personne (ex. 5 personnes réservées =
+   50€ de garantie)
+4. Email de confirmation (Resend) rappelant la politique d'annulation
+   (24h) et le montant de garantie — les rappels par email avant la
+   date réduisent aussi les no-shows en pratique, à prévoir
+5. Interface admin (équipe, sur le modèle de `/admin` chez LYFE) listant
+   les réservations à venir avec la table préférée du client en
+   information, permettant de :
+   - Marquer une réservation "arrivée" (aucun débit, l'empreinte est
+     simplement libérée)
+   - Marquer une réservation "no-show" ou "annulation tardive"
+     (déclenche le débit des 10€/personne)
+6. Coordonnées des réservataires conservées comme fichier client, dans
+   une base de données dédiée à Jo Live Bar (jamais partagée avec LYFE)
+7. Mention RGPD à prévoir sur le site (usage des données, durée de
+   conservation, droit à la suppression sur demande) — à faire valider
+   par un professionnel qualifié si besoin, comme pour LYFE
+
+### Plan de salle (page `/plan-de-salle`)
+
+**Validé le 2026-07-27, réduit de moitié le 2026-07-28** (composant
+`components/FloorPlan.tsx`, données dans `components/floor-data.ts`) :
+salle rectangulaire, bar sur toute la longueur d'un côté, scène centrée
+sur le côté opposé (plus étroite que le mur), **12 tables au total** —
+5 tables rondes (2 pers.), 5 tables carrées (4 pers.), 2 banquettes le
 long des murs latéraux (6 pers.) — soit ~42 places assises. **Ce plan
 est une estimation décrite à l'oral par l'organisateur, pas un relevé
 architectural exact** — les positions précises (coordonnées SVG dans
 `floorTables`, `components/floor-data.ts`) sont à ajuster si un vrai
 plan/photo est fourni plus tard.
 
-Les tables sont cliquables (`components/FloorPlan.tsx`, "use client") :
-toucher une table la sélectionne (mise en évidence + boutons "Réserver
-cette table" / "Appeler"), la retoucher la désélectionne. **La
-disponibilité en temps réel n'est pas encore branchée** — la
-sélection ne fait qu'orienter vers le canal de réservation actuel
-(inserve.co/téléphone) en demandant de préciser le numéro de table ;
-le vrai lien base de données par table arrivera avec le système de
-réservation ci-dessous. Point technique : `floorTables`/`floorSummary`
-vivent dans `floor-data.ts` (fichier sans "use client") plutôt que
-dans `FloorPlan.tsx`, pour que la page serveur `/plan-de-salle` puisse
+Les tables sont déjà cliquables (`components/FloorPlan.tsx`, "use
+client") : toucher une table la sélectionne (mise en évidence +
+boutons "Réserver cette table" / "Appeler"), la retoucher la
+désélectionne. **Cette sélection n'est pas encore reliée à une vraie
+réservation** — elle oriente pour l'instant vers le canal de
+réservation actuel (inserve.co/téléphone) en demandant de préciser le
+numéro de table. Une fois le flux ci-dessus construit, la table
+sélectionnée deviendra une préférence jointe au formulaire de
+réservation (pas un verrou temps réel, voir "Modèle de placement des
+tables" ci-dessus). Point technique : `floorTables`/`floorSummary`
+vivent dans `floor-data.ts` (fichier sans "use client") plutôt que dans
+`FloorPlan.tsx`, pour que la page serveur `/plan-de-salle` puisse
 importer `floorSummary` sans passer par la frontière client/serveur.
 
 Ce que ça implique techniquement, à faire au moment de démarrer ce
 chantier (pas avant, pas de scaffolding spéculatif) :
 - Table `tables` dans Supabase (id, nom/numéro, capacité, zone, position
-  x/y pour l'affichage du plan)
-- La réservation référence une table précise (`table_id`), en plus de
-  event_slug/email/participants déjà prévus
+  x/y pour l'affichage du plan) — utilisée pour l'affichage et comme
+  préférence sur la réservation, pas pour un verrouillage par table
+- Table `reservations` : nom, contact, participants, date/heure,
+  `table_preferee_id` (nullable), statut (confirmée/arrivée/no-show/
+  annulée), référence Stripe (SetupIntent + PaymentMethod)
+- Gestion de capacité par créneau au niveau global (somme des
+  participants sur un créneau ≤ capacité totale de la salle), pas par
+  table individuelle
 - Ceci confirme le besoin de Supabase + Server Actions dès cette étape
   (pas seulement pour l'empreinte bancaire) : **retirer `output:
   "export"` fera partie de ce même chantier**, voir note dans "Stack
