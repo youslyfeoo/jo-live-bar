@@ -27,15 +27,22 @@ même style ; `cymbal-texture.png` reste dans le projet mais n'est plus
 utilisé.
 
 Écran d'accueil animé (`components/IntroSplash.tsx`, page `/`
-uniquement) : la vraie photo de couverture (`couverture-jo-live-bar.png`)
-apparaît en fondu/zoom avec un reflet doré qui la traverse, plein écran
-noir, disparaît automatiquement après ~2,6s (une seule fois par session
-via `sessionStorage`, jamais si l'utilisateur a activé « réduire les
-animations »). **Un premier essai avait dessiné un batteur animé en
-SVG/CSS — jugé pas assez réaliste par l'organisateur (2026-07-28),
-remplacé par cette version basée sur la vraie photo.** Si l'organisateur
-fournit une vidéo/GIF réel d'un batteur plus tard, cette page pourra
-être remplacée à nouveau.
+uniquement) : une vraie vidéo de batteur en fond (`public/videos/
+intro-drummer.mp4`, muette, lecture automatique) assombrie, avec le
+logo J.O par-dessus, plein écran noir, disparaît automatiquement après
+~3,6s (une seule fois par session via `sessionStorage`, jamais si
+l'utilisateur a activé « réduire les animations »).
+
+**Origine et droits de la vidéo (important, 2026-07-28)** : l'organisateur
+voulait initialement réutiliser un clip trouvé sur Pinterest (un
+enregistrement d'écran de cette vidéo), mais cette vidéo appartenait à
+quelqu'un d'autre — refusé pour éviter toute infraction au droit
+d'auteur sur un site commercial. À la place, la vidéo utilisée vient de
+Pexels (licence Pexels : gratuite, usage commercial autorisé, par
+« Big Bag Films », id 8513826), donc libre de droits pour ce site. Deux
+essais précédents (batteur dessiné en SVG/CSS, puis photo de couverture
+avec reflet doré) avaient été jugés pas assez convaincants par
+l'organisateur avant cette version vidéo.
 
 Page carte (`/menu`) : la page elle-même ne défile plus (hauteur fixe à
 l'écran, `overflow-hidden`) pour que seul le livre se feuillette, sans
