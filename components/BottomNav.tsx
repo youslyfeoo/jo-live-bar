@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 
 const items = [
-  { href: "/#concept", label: "Soirée", image: "/images/cymbal-texture.png", showLabel: true },
   { href: "/#reservation", label: "Réserver", image: "/images/nav-reserve.png", showLabel: false },
   { href: "/menu", label: "Menu", image: "/images/nav-menu.png", showLabel: false },
   { href: "/a-propos", label: "À propos", image: "/images/nav-a-propos.png", showLabel: false },

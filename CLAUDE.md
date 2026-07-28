@@ -17,14 +17,14 @@ horaires, adresse/contact. Plus trois pages : `/menu` (carte complète en
 livre animé, voir "Page carte" ci-dessous), `/plan-de-salle` (voir
 "Choix de la table sur plan") et `/a-propos` (histoire du lieu).
 Navigation en bas de chaque page (`components/BottomNav.tsx`, façon
-appli mobile) vers ces sections : 4 pastilles côte à côte (sans fond de
-bulle englobant), chacune utilisant une vraie photo de cymbale dorée
-avec le nom de la section gravé dessus (fournies par l'organisateur,
-`public/images/nav-*.png`) plutôt qu'un rendu recréé en CSS — bien plus
-réaliste. **Un seul des 4 boutons ("Soirée") utilise encore l'ancienne
-texture générique (`cymbal-texture.png`) avec le texte superposé en
-CSS** : il manque l'image dédiée pour cette entrée, à demander à
-l'organisateur pour harmoniser les 4 boutons.
+appli mobile) vers 3 sections (Réserver, Menu, À propos) : pastilles
+côte à côte (sans fond de bulle englobant), chacune utilisant une vraie
+photo de cymbale dorée avec le nom gravé dessus (fournies par
+l'organisateur, `public/images/nav-*.png`) plutôt qu'un rendu recréé en
+CSS — bien plus réaliste. Le 4ᵉ bouton "Soirée" (vers `/#concept`) a été
+retiré (décision organisateur, 2026-07-28) faute d'image dédiée dans le
+même style ; `cymbal-texture.png` reste dans le projet mais n'est plus
+utilisé.
 
 Écran d'accueil animé (`components/IntroSplash.tsx`, page `/`
 uniquement) : silhouette dorée d'un batteur qui joue (baguettes
