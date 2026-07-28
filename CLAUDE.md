@@ -8,7 +8,22 @@ vs `C:\Users\youss\lyfe`), dépôt Git séparé, et — dès que des comptes de
 service seront créés (Supabase, Stripe, Resend, hébergement) — comptes et
 clés d'API strictement séparés de LYFE, même si les mêmes logiciels sont
 réutilisés. Décision organisateur (2026-07-27) : ne jamais mélanger les
-deux projets, dans le code comme dans les données.
+deux projets, dans le code comme dans les données. LYFE et Jo Live Bar
+sont deux entités/activités différentes (confirmé 2026-07-28), ce qui
+renforce cette règle (pas juste une préférence d'organisation).
+
+**Exception temporaire assumée (décision organisateur, 2026-07-28)** :
+pendant la phase de test du système de réservation, Stripe utilise le
+compte existant de LYFE, mais **uniquement en mode test** (clés
+`sk_test_`/`pk_test_`, aucune vraie carte, aucun vrai virement — donc
+aucune donnée ou revenu réellement mélangé). Un compte Stripe dédié à
+Jo Live Bar sera créé et tout sera basculé dessus **avant tout paiement
+réel**, avant la mise en production. Ne jamais utiliser de clé
+`sk_live_`/`pk_live_` de LYFE pour Jo Live Bar, en aucune circonstance.
+Supabase : compte de connexion possiblement partagé, mais **projet
+Supabase toujours dédié et séparé** pour Jo Live Bar (base de données
+et clés différentes de LYFE, ce qui garantit déjà l'absence de mélange
+de données).
 
 ## État actuel (2026-07-27)
 
