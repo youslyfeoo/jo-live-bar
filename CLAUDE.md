@@ -27,22 +27,22 @@ même style ; `cymbal-texture.png` reste dans le projet mais n'est plus
 utilisé.
 
 Écran d'accueil animé (`components/IntroSplash.tsx`, page `/`
-uniquement) : une vraie vidéo de batteur en fond (`public/videos/
-intro-drummer.mp4`, muette, lecture automatique) assombrie, avec le
-logo J.O par-dessus, plein écran noir, disparaît automatiquement après
-~3,6s (une seule fois par session via `sessionStorage`, jamais si
-l'utilisateur a activé « réduire les animations »).
+uniquement) : le logo J.O fait un « zoom dramatique » façon générique
+Netflix — parti minuscule et flou, il grossit avec un effet de rebond
+et un flash de lumière dorée, puis se stabilise. Plein écran noir,
+disparaît automatiquement après ~2,8s (une seule fois par session via
+`sessionStorage`, jamais si l'utilisateur a activé « réduire les
+animations »).
 
-**Origine et droits de la vidéo (important, 2026-07-28)** : l'organisateur
-voulait initialement réutiliser un clip trouvé sur Pinterest (un
-enregistrement d'écran de cette vidéo), mais cette vidéo appartenait à
-quelqu'un d'autre — refusé pour éviter toute infraction au droit
-d'auteur sur un site commercial. À la place, la vidéo utilisée vient de
-Pexels (licence Pexels : gratuite, usage commercial autorisé, par
-« Big Bag Films », id 8513826), donc libre de droits pour ce site. Deux
-essais précédents (batteur dessiné en SVG/CSS, puis photo de couverture
-avec reflet doré) avaient été jugés pas assez convaincants par
-l'organisateur avant cette version vidéo.
+**Historique des essais (2026-07-28)**, du premier au dernier, chacun
+remplacé par le suivant à la demande de l'organisateur : batteur dessiné
+en SVG/CSS (pas assez réaliste) → photo de couverture avec reflet doré
+→ vraie vidéo de batteur (licence Pexels, « Big Bag Films », id
+8513826 — une vidéo Pinterest proposée initialement a été écartée car
+elle appartenait à quelqu'un d'autre) → **version actuelle : zoom sur le
+logo**, jugée plus fiable qu'une vidéo qui doit charger. Le fichier
+vidéo a été retiré du projet ; l'URL Pexels ci-dessus permet de le
+retélécharger si besoin de revenir en arrière.
 
 Page carte (`/menu`) : la page elle-même ne défile plus (hauteur fixe à
 l'écran, `overflow-hidden`) pour que seul le livre se feuillette, sans

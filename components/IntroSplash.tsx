@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const VISIBLE_MS = 3600;
+const VISIBLE_MS = 2800;
 const FADE_MS = 600;
 const SESSION_KEY = "jo-intro-seen";
 
@@ -40,29 +40,32 @@ export default function IntroSplash() {
       }`}
       aria-hidden="true"
     >
-      <video
-        src="/videos/intro-drummer.mp4"
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 bg-neutral-950/55" />
+      <div className="absolute inset-0 flex items-center justify-center animate-[glow-pulse_1.3s_ease-out_both]">
+        <div className="h-40 w-40 rounded-full bg-accent/40 blur-3xl sm:h-56 sm:w-56" />
+      </div>
 
       <Image
         src="/images/logo-jo-live-bar.jpg"
         alt=""
         width={1140}
         height={641}
-        className="relative w-40 rounded shadow-2xl shadow-black/70 sm:w-48 animate-[logo-reveal_0.9s_ease-out_both]"
+        className="relative w-40 rounded shadow-2xl shadow-black/70 sm:w-52 animate-[logo-boom_1.3s_ease-out_both]"
         priority
       />
 
       <style>{`
-        @keyframes logo-reveal {
-          0% { opacity: 0; transform: scale(0.9); }
-          100% { opacity: 1; transform: scale(1); }
+        @keyframes logo-boom {
+          0%   { transform: scale(0.15); opacity: 0; filter: blur(14px) brightness(0.6); }
+          35%  { transform: scale(1.18); opacity: 1; filter: blur(0) brightness(1.4); }
+          55%  { transform: scale(0.93); filter: brightness(1.05); }
+          75%  { transform: scale(1.04); filter: brightness(1); }
+          100% { transform: scale(1); filter: brightness(1); }
+        }
+        @keyframes glow-pulse {
+          0%, 25% { opacity: 0; }
+          35% { opacity: 1; }
+          60% { opacity: 0; }
+          100% { opacity: 0; }
         }
       `}</style>
     </div>
