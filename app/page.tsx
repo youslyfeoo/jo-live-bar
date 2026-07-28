@@ -1,4 +1,5 @@
 import Image from "next/image";
+import IntroSplash from "@/components/IntroSplash";
 
 const RESERVATION_ACTUELLE_URL =
   "https://inserve.co/businesses/LgLbI7dRTU5Jvxfiozrt";
@@ -6,6 +7,7 @@ const RESERVATION_ACTUELLE_URL =
 export default function Home() {
   return (
     <div className="flex flex-col flex-1">
+      <IntroSplash />
       <header className="sticky top-0 z-10 border-b border-neutral-800 bg-neutral-950/90 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center px-6 py-3">
           <Image

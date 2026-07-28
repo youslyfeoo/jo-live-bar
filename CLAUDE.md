@@ -17,11 +17,24 @@ horaires, adresse/contact. Plus trois pages : `/menu` (carte complète en
 livre animé, voir "Page carte" ci-dessous), `/plan-de-salle` (voir
 "Choix de la table sur plan") et `/a-propos` (histoire du lieu).
 Navigation en bas de chaque page (`components/BottomNav.tsx`, façon
-appli mobile) vers ces sections : 4 pastilles dorées côte à côte (sans
-fond de bulle englobant), le nom de la section écrit directement sur
-chaque pastille. Pas encore de réservation en ligne interne ni de
-paiement — quelques champs restent volontairement en `[À COMPLÉTER]`
-(voir liste en fin de
+appli mobile) vers ces sections : 4 pastilles côte à côte (sans fond de
+bulle englobant), chacune utilisant une vraie photo de cymbale dorée
+avec le nom de la section gravé dessus (fournies par l'organisateur,
+`public/images/nav-*.png`) plutôt qu'un rendu recréé en CSS — bien plus
+réaliste. **Un seul des 4 boutons ("Soirée") utilise encore l'ancienne
+texture générique (`cymbal-texture.png`) avec le texte superposé en
+CSS** : il manque l'image dédiée pour cette entrée, à demander à
+l'organisateur pour harmoniser les 4 boutons.
+
+Écran d'accueil animé (`components/IntroSplash.tsx`, page `/`
+uniquement) : silhouette dorée d'un batteur qui joue (baguettes
+animées en CSS, cymbales, grosse caisse « J·O »), plein écran noir,
+disparaît automatiquement après ~3,2s (une seule fois par session via
+`sessionStorage`, et jamais si l'utilisateur a activé « réduire les
+animations » sur son appareil).
+
+Pas encore de réservation en ligne interne ni de paiement — quelques
+champs restent volontairement en `[À COMPLÉTER]` (voir liste en fin de
 fichier).
 
 ### Répartition du contenu par page (décision organisateur, 2026-07-28)
